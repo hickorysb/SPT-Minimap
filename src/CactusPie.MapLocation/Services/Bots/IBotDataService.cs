@@ -10,6 +10,10 @@ namespace CactusPie.MapLocation.Services.Bots
         IReadOnlyDictionary<int, BotOwner> SpawnedBots { get; }
 
         BotType GetBotType(BotOwner bot);
+        
+        BotType GetBotType(Player bot);
+
+        bool IsCoopGame { get; }
 
         void InitializeBotDataForCurrentGame();
 

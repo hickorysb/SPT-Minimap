@@ -6,10 +6,10 @@ namespace CactusPie.MapLocation.Minimap.Events;
 
 public class QuestDataReceivedEventArgs : EventArgs
 {
-    public QuestDataReceivedEventArgs(IReadOnlyList<QuestData>? quests)
+    public QuestDataReceivedEventArgs(IReadOnlyList<CustomQuestData>? quests)
     {
         Quests = quests;
     }
 
-    public IReadOnlyList<QuestData>? Quests { get; set; }
+    public IReadOnlyList<CustomQuestData>? Quests { get; set; }
 }

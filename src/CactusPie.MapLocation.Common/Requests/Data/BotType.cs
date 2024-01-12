@@ -11,5 +11,9 @@
         Boss,
 
         Other,
+        
+        Player,
+        
+        DeadPlayer
     }
 }

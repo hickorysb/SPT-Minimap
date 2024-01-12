@@ -1,6 +1,6 @@
 ﻿namespace CactusPie.MapLocation.Common.Requests.Data
 {
-    public sealed class BotData
+    public sealed class CustomBotData
     {
         public int BotId { get; set; }
 

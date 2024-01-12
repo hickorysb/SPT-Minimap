@@ -53,6 +53,7 @@ namespace CactusPie.MapLocation
             new MapLocationPatch().Enable();
             new AirdropMapLocationPatch(ServiceContainer.GetInstance<IAirdropService>()).Enable();
             new TryNotifyConditionChangedPatch(ServiceContainer.GetInstance<IMapDataServer>()).Enable();
+            new PatchCoopInOutdatedVersion().Enable();
         }
     }
 }

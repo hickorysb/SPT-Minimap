@@ -20,11 +20,11 @@ namespace CactusPie.MapLocation.Services.Quests
             _localizationHelper = localizationHelper;
         }
 
-        public IReadOnlyList<QuestData> QuestMarkers { get; private set; } = Array.Empty<QuestData>();
+        public IReadOnlyList<CustomQuestData> QuestMarkers { get; private set; } = Array.Empty<CustomQuestData>();
 
         public void ReloadQuestData(TriggerWithId[] allTriggers)
         {
-            var questMarkerData = new List<QuestData>(32);
+            var questMarkerData = new List<CustomQuestData>(32);
 
             GameWorld gameWorld = Singleton<GameWorld>.Instance;
             Player player = gameWorld.MainPlayer;
@@ -40,7 +40,7 @@ namespace CactusPie.MapLocation.Services.Quests
             (string Id, LootItem Item)[] questItems =
                 lootItemsList.Where(x => x.Item.QuestItem).Select(x => (x.TemplateId, x)).ToArray();
 
-            foreach (QuestClass item in questsList)
+            foreach (Quest item in questsList)
             {
                 if (item.QuestStatus != EQuestStatus.Started)
                 {
@@ -80,7 +80,7 @@ namespace CactusPie.MapLocation.Services.Quests
                             {
                                 foreach (PlaceItemTrigger trigger in zoneTriggers)
                                 {
-                                    var staticInfo = new QuestData
+                                    var staticInfo = new CustomQuestData
                                     {
                                         Id = location.id,
                                         Location = ToQuestLocation(trigger.transform.position),
@@ -106,7 +106,7 @@ namespace CactusPie.MapLocation.Services.Quests
                             {
                                 foreach (PlaceItemTrigger trigger in zoneTriggers)
                                 {
-                                    var staticInfo = new QuestData
+                                    var staticInfo = new CustomQuestData
                                     {
                                         Id = beacon.id,
                                         Location = ToQuestLocation(trigger.transform.position),
@@ -132,7 +132,7 @@ namespace CactusPie.MapLocation.Services.Quests
                                 {
                                     if (questItem.Id.Equals(itemId, StringComparison.OrdinalIgnoreCase))
                                     {
-                                        var staticInfo = new QuestData
+                                        var staticInfo = new CustomQuestData
                                         {
                                             Id = findItem.id,
                                             Location = ToQuestLocation(questItem.Item.transform.position),
@@ -171,7 +171,7 @@ namespace CactusPie.MapLocation.Services.Quests
                                         {
                                             foreach (ExperienceTrigger trigger in zoneTriggers)
                                             {
-                                                var staticInfo = new QuestData
+                                                var staticInfo = new CustomQuestData
                                                 {
                                                     Id = counterCreator.id,
                                                     Location = ToQuestLocation(trigger.transform.position),
@@ -200,7 +200,7 @@ namespace CactusPie.MapLocation.Services.Quests
                                             {
                                                 foreach (ExperienceTrigger trigger in zoneTriggers)
                                                 {
-                                                    var staticInfo = new QuestData
+                                                    var staticInfo = new CustomQuestData
                                                     {
                                                         Id = counterCreator.id,
                                                         Location = ToQuestLocation(trigger.transform.position),

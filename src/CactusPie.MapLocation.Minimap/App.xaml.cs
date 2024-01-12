@@ -22,6 +22,8 @@ namespace CactusPie.MapLocation.Minimap;
 /// </summary>
 public partial class App : Application
 {
+    public static MapConfiguration AppConfig;
+    
     private void ApplicationStartup(object sender, StartupEventArgs e)
     {
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
@@ -43,9 +45,9 @@ public partial class App : Application
     private static IComponentContext CreateContainer()
     {
         IConfiguration configuration = GetConfiguration();
-        var mapConfiguration = configuration.Get<MapConfiguration>();
+        AppConfig = configuration.Get<MapConfiguration>();
 
-        if (mapConfiguration?.GameIpAddress == null)
+        if (AppConfig?.GameIpAddress == null)
         {
             throw new InvalidOperationException("Cannot retrieve the listen IP address from the configuration!");
         }
@@ -61,9 +63,9 @@ public partial class App : Application
         containerBuilder.RegisterType<MapDataRetriever>().As<IMapDataRetriever>().InstancePerDependency();
         containerBuilder.RegisterType<MapCreationDataManager>().As<IMapCreationDataManager>().SingleInstance();
         containerBuilder.RegisterType<CurrentMapData>().As<ICurrentMapData>().SingleInstance().AutoActivate();
-        containerBuilder.RegisterInstance(mapConfiguration).AsSelf();
+        containerBuilder.RegisterInstance(AppConfig).AsSelf();
 
-        var restClientOptions = new RestClientOptions($"http://{mapConfiguration.GameIpAddress}:{mapConfiguration.GamePort}");
+        var restClientOptions = new RestClientOptions($"http://{AppConfig.GameIpAddress}:{AppConfig.GamePort}");
         var restClient = new RestClient(restClientOptions);
         containerBuilder.RegisterInstance(restClient).AsSelf();
 

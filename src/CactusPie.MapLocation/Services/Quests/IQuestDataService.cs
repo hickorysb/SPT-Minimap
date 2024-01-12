@@ -6,7 +6,7 @@ namespace CactusPie.MapLocation.Services.Quests
 {
     public interface IQuestDataService
     {
-        IReadOnlyList<QuestData> QuestMarkers { get; }
+        IReadOnlyList<CustomQuestData> QuestMarkers { get; }
 
         void ReloadQuestData(TriggerWithId[] allTriggers);
     }

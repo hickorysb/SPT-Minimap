@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using Aki.Custom.Airdrops;
 using Aki.Reflection.Patching;
 using CactusPie.MapLocation.Common.Requests.Data;
 using CactusPie.MapLocation.Services.Airdrop;
+using StayInTarkov.AkiSupport.Airdrops;
 using UnityEngine;
 
 namespace CactusPie.MapLocation.Patches

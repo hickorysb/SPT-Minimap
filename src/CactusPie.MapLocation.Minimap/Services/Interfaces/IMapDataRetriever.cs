@@ -12,5 +12,5 @@ public interface IMapDataRetriever : IDisposable
 
     void StopReceivingData();
 
-    Task<IReadOnlyList<QuestData>?> GetQuestData(CancellationToken cancellationToken);
+    Task<IReadOnlyList<CustomQuestData>?> GetQuestData(CancellationToken cancellationToken);
 }

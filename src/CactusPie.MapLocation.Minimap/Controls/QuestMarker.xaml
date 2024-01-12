@@ -26,14 +26,14 @@
                     <TextBlock Foreground="Black" Background="White" HorizontalAlignment="Left">
                         <TextBlock.Inlines>
                             <Run FontWeight="Bold" Text="Quest name:" />
-                            <Run Text="{Binding QuestData.NameText, Mode=OneWay}" />
+                            <Run Text="{Binding CustomQuestData.NameText, Mode=OneWay}" />
                             <LineBreak />
 
                             <Run FontWeight="Bold" Text="Quest giver:" />
-                            <Run Text="{Binding QuestData.Trader, Mode=OneWay}" />
+                            <Run Text="{Binding CustomQuestData.Trader, Mode=OneWay}" />
                         </TextBlock.Inlines>
                     </TextBlock>
-                    <TextBlock Text="{Binding QuestData.Description, Mode=OneWay}" Foreground="Black"
+                    <TextBlock Text="{Binding CustomQuestData.Description, Mode=OneWay}" Foreground="Black"
                                Background="White" TextWrapping="Wrap">
                     </TextBlock>
                 </StackPanel>

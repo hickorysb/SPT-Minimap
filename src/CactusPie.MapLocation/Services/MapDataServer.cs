@@ -12,6 +12,7 @@ using EFT;
 using EFT.Interactive;
 using EmbedIO;
 using EmbedIO.Actions;
+using StayInTarkov.Coop;
 using UnityEngine;
 
 namespace CactusPie.MapLocation.Services
@@ -109,14 +110,14 @@ namespace CactusPie.MapLocation.Services
                 return context.SendDataAsync(
                     new QuestDataResponse
                     {
-                        Quests = Array.Empty<QuestData>(),
+                        Quests = Array.Empty<CustomQuestData>(),
                     });
             }
 
-            IReadOnlyList<QuestData> quests = _questDataService.QuestMarkers;
+            IReadOnlyList<CustomQuestData> quests = _questDataService.QuestMarkers;
             var response = new QuestDataResponse
             {
-                Quests = quests,
+                Quests = quests.ToArray(),
             };
 
             return context.SendDataAsync(response);
@@ -133,16 +134,65 @@ namespace CactusPie.MapLocation.Services
             Vector3 playerPosition = _player.Position;
             Vector2 playerRotation = _player.Rotation;
 
-            List<BotData> botLocations = _botDataService.SpawnedBots.Values.Select(
-                    bot => new BotData
+            List<CustomBotData> botLocations = new List<CustomBotData>();
+
+            if (_botDataService.IsCoopGame)
+            {
+                botLocations.Clear();
+                foreach (Player bot in CoopGameComponent.GetCoopGameComponent().PlayerBots)
+                {
+                    if (bot.HealthController.IsAlive)
                     {
-                        BotId = bot.Id,
-                        BotType = _botDataService.GetBotType(bot),
-                        XPosition = bot.Position.x,
-                        YPosition = bot.Position.y,
-                        ZPosition = bot.Position.z,
-                    })
-                .ToList();
+                        botLocations.Add(new CustomBotData
+                        {
+                            BotId = bot.Id,
+                            BotType = _botDataService.GetBotType(bot),
+                            XPosition = bot.Position.x,
+                            YPosition = bot.Position.y,
+                            ZPosition = bot.Position.z
+                        });
+                    }
+                }
+                
+                foreach (Player player in CoopGameComponent.GetCoopGameComponent().PlayerUsers)
+                {
+                    if (player.HealthController.IsAlive && player.ProfileId != _player.ProfileId)
+                    {
+                        botLocations.Add(new CustomBotData
+                        {
+                            BotId = player.Id,
+                            BotType = BotType.Player,
+                            XPosition = player.Position.x,
+                            YPosition = player.Position.y,
+                            ZPosition = player.Position.z
+                        });
+                    }
+                    else if (player.ProfileId != _player.ProfileId && !player.HealthController.IsAlive)
+                    {
+                        botLocations.Add(new CustomBotData
+                        {
+                            BotId = player.Id,
+                            BotType = BotType.DeadPlayer,
+                            XPosition = player.Position.x,
+                            YPosition = player.Position.y,
+                            ZPosition = player.Position.z
+                        });
+                    }
+                }
+            }
+            else
+            {
+                botLocations = _botDataService.SpawnedBots.Values.Select(
+                        bot => new CustomBotData
+                        {
+                            BotId = bot.Id,
+                            BotType = _botDataService.GetBotType(bot),
+                            XPosition = bot.Position.x,
+                            YPosition = bot.Position.y,
+                            ZPosition = bot.Position.z,
+                        })
+                    .ToList();
+            }
 
             var response = new MapLocationResponse
             {

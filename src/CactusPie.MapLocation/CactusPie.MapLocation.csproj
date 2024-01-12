@@ -14,37 +14,29 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="aki-custom">
-          <HintPath>..\References\aki-custom.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
         <Reference Include="Aki.Reflection">
-            <HintPath>..\References\EFT_Managed\Aki.Reflection.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\Aki.Reflection.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-            <HintPath>..\References\EFT_Managed\Assembly-CSharp.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>..\..\..\..\Downloads\de4dot-cex\Assembly-CSharp-cleaned-cleaned.dll</HintPath>
         </Reference>
         <Reference Include="Comfort">
-            <HintPath>..\References\EFT_Managed\Comfort.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
         </Reference>
         <Reference Include="Comfort.Unity">
-            <HintPath>..\References\EFT_Managed\Comfort.Unity.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\Comfort.Unity.dll</HintPath>
+        </Reference>
+        <Reference Include="StayInTarkov">
+          <HintPath>D:\SIT\BepInEx\plugins\StayInTarkov.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine">
-            <HintPath>..\References\EFT_Managed\UnityEngine.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath>..\References\EFT_Managed\UnityEngine.CoreModule.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.InputLegacyModule">
-            <HintPath>..\References\EFT_Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-            <Private>False</Private>
+          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
         </Reference>
     </ItemGroup>
 

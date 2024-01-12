@@ -84,7 +84,7 @@ public sealed class MapDataRetriever : IMapDataRetriever
             });
     }
 
-    public async Task<IReadOnlyList<QuestData>?> GetQuestData(CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<CustomQuestData>?> GetQuestData(CancellationToken cancellationToken)
     {
         var request = new RestRequest("quests");
 

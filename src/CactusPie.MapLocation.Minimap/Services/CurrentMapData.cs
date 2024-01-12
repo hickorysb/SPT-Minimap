@@ -17,7 +17,7 @@ public class CurrentMapData : ICurrentMapData
 
     private MapPositionData? _lastReceivedPosition;
 
-    private IReadOnlyList<QuestData>? _quests;
+    private IReadOnlyList<CustomQuestData>? _quests;
 
     private BoundData? _selectedBound;
 
@@ -63,7 +63,7 @@ public class CurrentMapData : ICurrentMapData
 
     public bool AutomaticallySwitchLevels { get; set; } = true;
 
-    public IReadOnlyList<QuestData>? Quests
+    public IReadOnlyList<CustomQuestData>? Quests
     {
         get => _quests;
         set

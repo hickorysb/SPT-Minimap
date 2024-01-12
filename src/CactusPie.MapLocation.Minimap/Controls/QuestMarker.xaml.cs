@@ -7,18 +7,18 @@ using CactusPie.MapLocation.Minimap.Events;
 
 namespace CactusPie.MapLocation.Minimap.Controls;
 
-[DebuggerDisplay("{QuestData.NameText}")]
+[DebuggerDisplay("{CustomQuestData.NameText}")]
 public partial class QuestMarker : UserControl
 {
-    public QuestMarker(QuestData questData)
+    public QuestMarker(CustomQuestData customQuestData)
     {
-        QuestData = questData;
+        CustomQuestData = customQuestData;
         InitializeComponent();
     }
 
     public bool IsDescriptionVisible { get; private set; }
 
-    public QuestData QuestData { get; }
+    public CustomQuestData CustomQuestData { get; }
 
     public event EventHandler<QuestMarkerDescriptionVisibilityChangedEventArgs>? DescriptionVisibilityChanged;
 

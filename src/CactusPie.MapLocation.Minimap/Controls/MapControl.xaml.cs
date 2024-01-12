@@ -224,7 +224,22 @@ public partial class MapControl : UserControl
             {
                 Canvas.SetLeft(botMarker, transformedXPosition);
                 Canvas.SetTop(botMarker, transformedZPosition);
-                botMarker.Visibility = visibility;
+                if (botLocation.BotType == BotType.Player)
+                {
+                    botMarker.Visibility = (App.AppConfig.ShowPlayers.GetValueOrDefault())
+                        ? Visibility.Visible
+                        : Visibility.Hidden;
+                }
+                else if (botLocation.BotType == BotType.DeadPlayer)
+                {
+                    botMarker.Visibility = (App.AppConfig.ShowDeadPlayers.GetValueOrDefault())
+                        ? Visibility.Visible
+                        : Visibility.Hidden;
+                }
+                else
+                {
+                    botMarker.Visibility = visibility;
+                }
             }
             else
             {
@@ -234,6 +249,8 @@ public partial class MapControl : UserControl
                     BotType.Usec => "circle_blue.png",
                     BotType.Scav => "circle_yellow.png",
                     BotType.Boss => "circle_purple.png",
+                    BotType.Player => "circle_green.png",
+                    BotType.DeadPlayer => "circle_greendead.png",
                     _ => "circle_orange_brown.png",
                 };
 
@@ -246,8 +263,23 @@ public partial class MapControl : UserControl
                 };
 
                 image.RenderTransform = scaleTransform;
-                image.Visibility = visibility;
-
+                if (botLocation.BotType == BotType.Player)
+                {
+                    image.Visibility = (App.AppConfig.ShowPlayers.GetValueOrDefault())
+                        ? Visibility.Visible
+                        : Visibility.Hidden;
+                }
+                else if (botLocation.BotType == BotType.DeadPlayer)
+                {
+                    image.Visibility = (App.AppConfig.ShowDeadPlayers.GetValueOrDefault())
+                        ? Visibility.Visible
+                        : Visibility.Hidden;
+                }
+                else
+                {
+                    image.Visibility = visibility;
+                }
+                
                 PlayerOverlayCanvas.Children.Add(image);
 
                 Canvas.SetLeft(image, transformedXPosition);
@@ -479,7 +511,7 @@ public partial class MapControl : UserControl
 
         foreach (QuestMarker questMarkerToModify in QuestMarkers.Values)
         {
-            if (questMarkerToModify.QuestData.Id != selectedQuestMarker.QuestData.Id)
+            if (questMarkerToModify.CustomQuestData.Id != selectedQuestMarker.CustomQuestData.Id)
             {
                 if (questMarkerToModify.IsDescriptionVisible)
                 {
@@ -581,7 +613,7 @@ public partial class MapControl : UserControl
         Dispatcher.Invoke(() => SetQuestGameLocations(e.Quests));
     }
 
-    private void SetQuestGameLocations(IReadOnlyList<QuestData>? quests)
+    private void SetQuestGameLocations(IReadOnlyList<CustomQuestData>? quests)
     {
         if (quests == null)
         {
@@ -620,7 +652,7 @@ public partial class MapControl : UserControl
         transformGroup.Children.Add(new RotateTransform { Angle = -selectedMap.MapRotation });
         transformGroup.Children.Add(scaleTransform);
 
-        foreach (QuestData quest in quests)
+        foreach (CustomQuestData quest in quests)
         {
             TransformedPositionResult mapPositions = selectedMap.TransformPositions(
                 quest.Location.X,
@@ -707,7 +739,7 @@ public partial class MapControl : UserControl
                 var cancellationTokenSource = new CancellationTokenSource();
                 cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
 
-                IReadOnlyList<QuestData>? quests = await _mapDataRetriever
+                IReadOnlyList<CustomQuestData>? quests = await _mapDataRetriever
                     .GetQuestData(cancellationTokenSource.Token)
                     .ConfigureAwait(false);
 

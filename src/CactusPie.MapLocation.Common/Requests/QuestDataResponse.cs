@@ -5,6 +5,6 @@ namespace CactusPie.MapLocation.Common.Requests
 {
     public sealed class QuestDataResponse
     {
-        public IReadOnlyList<QuestData> Quests { get; set; }
+        public CustomQuestData[] Quests { get; set; }
     }
 }

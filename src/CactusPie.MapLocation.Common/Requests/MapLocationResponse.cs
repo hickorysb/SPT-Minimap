@@ -6,7 +6,7 @@ namespace CactusPie.MapLocation.Common.Requests
 {
     public sealed class MapLocationResponse
     {
-        public List<BotData> BotLocations { get; set; }
+        public List<CustomBotData> BotLocations { get; set; }
 
         public bool IsGameInProgress { get; set; }
 

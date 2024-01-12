@@ -9,14 +9,14 @@ namespace CactusPie.MapLocation.Patches
     {
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(GameWorld).GetMethod("OnGameStarted", BindingFlags.Public | BindingFlags.Instance);
+            return typeof(GameWorld).GetMethod(nameof(GameWorld.OnGameStarted));
         }
 
         [PatchPostfix]
         public static void PatchPostFix()
         {
             GameWorld gameWorld = Singleton<GameWorld>.Instance;
-
+            
             if (gameWorld == null)
             {
                 return;

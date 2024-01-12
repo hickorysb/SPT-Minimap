@@ -20,7 +20,7 @@ public interface ICurrentMapData
 
     MapPositionData? LastReceivedPosition { get; set; }
 
-    IReadOnlyList<QuestData>? Quests { get; set; }
+    IReadOnlyList<CustomQuestData>? Quests { get; set; }
 
     BoundData? SelectedBound { get; set; }
 

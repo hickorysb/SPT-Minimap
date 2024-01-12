@@ -1,6 +1,6 @@
 namespace CactusPie.MapLocation.Common.Requests.Data
 {
-    public sealed class QuestData
+    public sealed class CustomQuestData
     {
         public string Description { get; set; }
 
