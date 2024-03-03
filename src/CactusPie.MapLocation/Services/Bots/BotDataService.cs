@@ -22,7 +22,6 @@ namespace CactusPie.MapLocation.Services.Bots
 
         public IReadOnlyDictionary<int, BotOwner> SpawnedBots => _spawnedBots;
         public IEnumerable<Player> PlayersList => _playersList;
-        public bool IsCoopGame => _isCoopGame;
 
         public BotType GetBotType(BotOwner bot)
         {
@@ -86,22 +85,13 @@ namespace CactusPie.MapLocation.Services.Bots
                     $"The service cannot be initialized twice. Run {nameof(UnloadBotDataForCurrentGame)} first.");
             }
             
-            if (CoopGameComponent.GetCoopGameComponent() != null)
+            if (Singleton<IBotGame>.Instantiated)
             {
-                _spawnedBots.Clear();
-                _isCoopGame = true;
-            }
-            else
-            {
-                if (Singleton<IBotGame>.Instantiated)
-                {
-                    _botSpawnerClass = Singleton<IBotGame>.Instance.BotsController.BotSpawner;
+                _botSpawnerClass = Singleton<IBotGame>.Instance.BotsController.BotSpawner;
 
-                    _botSpawnerClass.OnBotCreated += OnBotCreated;
-                    _botSpawnerClass.OnBotRemoved += OnBotRemoved;
-                    _isInitialized = true;
-                }
-                _isCoopGame = false;
+                _botSpawnerClass.OnBotCreated += OnBotCreated;
+                _botSpawnerClass.OnBotRemoved += OnBotRemoved;
+                _isInitialized = true;
             }
         }
 

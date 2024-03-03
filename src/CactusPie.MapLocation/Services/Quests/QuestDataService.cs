@@ -31,12 +31,14 @@ namespace CactusPie.MapLocation.Services.Quests
 
             var questData = Traverse.Create(player).Field("_questController").GetValue<object>();
 
-            var quests = Traverse.Create(questData).Field("Quests").GetValue<object>();
+            var quests = Traverse.Create(questData).Property("Quests").GetValue<object>();
 
             var questsList = Traverse.Create(quests).Field("list_0").GetValue<IList>();
 
             var lootItemsList = Traverse.Create(gameWorld).Field("LootItems").Field("list_0").GetValue<List<LootItem>>();
-
+            
+            MapLocationPlugin.MapLocationLogger.LogInfo("Finished initial");
+            
             (string Id, LootItem Item)[] questItems =
                 lootItemsList.Where(x => x.Item.QuestItem).Select(x => (x.TemplateId, x)).ToArray();
 
@@ -51,7 +53,7 @@ namespace CactusPie.MapLocation.Services.Quests
 
                 var nameKey = Traverse.Create(template).Property("NameLocaleKey").GetValue<string>();
 
-                var traderId = Traverse.Create(template).Field("TraderId").GetValue<string>();
+                var traderId = Traverse.Create(template).Property("TraderId").GetValue<string>();
 
                 var availableForFinishConditions =
                     Traverse.Create(item).Property("AvailableForFinishConditions").GetValue<object>();
@@ -59,6 +61,8 @@ namespace CactusPie.MapLocation.Services.Quests
                 var availableForFinishConditionsList =
                     Traverse.Create(availableForFinishConditions).Field("list_0").GetValue<IList<Condition>>();
 
+                
+                MapLocationPlugin.MapLocationLogger.LogInfo("Quest Condition Data Setup Finished");
 
                 foreach (Condition condition in availableForFinishConditionsList)
                 {
@@ -150,9 +154,9 @@ namespace CactusPie.MapLocation.Services.Quests
                         }
                         case ConditionCounterCreator counterCreator:
                         {
-                            var counter = Traverse.Create(counterCreator).Field("counter").GetValue<object>();
+                            var counter = Traverse.Create(counterCreator).Field("_templateConditions").GetValue<object>();
 
-                            var conditions = Traverse.Create(counter).Property("conditions").GetValue<object>();
+                            var conditions = Traverse.Create(counter).Field("Conditions").GetValue<object>();
 
                             var conditionsList = Traverse.Create(conditions).Field("list_0").GetValue<IList>();
 

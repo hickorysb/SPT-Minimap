@@ -15,28 +15,31 @@
 
     <ItemGroup>
         <Reference Include="Aki.Reflection">
-          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\Aki.Reflection.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\Aki.Reflection.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\..\..\Downloads\de4dot-cex\Assembly-CSharp-cleaned-cleaned.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Comfort">
-          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\Comfort.dll</HintPath>
         </Reference>
         <Reference Include="Comfort.Unity">
-          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\Comfort.Unity.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\Comfort.Unity.dll</HintPath>
+        </Reference>
+        <Reference Include="DissonanceVoip">
+          <HintPath>I:\Tarkov Stuff\SITDev\DissonanceVoip.dll</HintPath>
         </Reference>
         <Reference Include="StayInTarkov">
-          <HintPath>D:\SIT\BepInEx\plugins\StayInTarkov.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\StayInTarkov.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine">
-          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\UnityEngine.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.InputLegacyModule">
-          <HintPath>D:\SIT\EscapeFromTarkov_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+          <HintPath>I:\Tarkov Stuff\SITDev\UnityEngine.InputLegacyModule.dll</HintPath>
         </Reference>
     </ItemGroup>
 

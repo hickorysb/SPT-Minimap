@@ -13,8 +13,6 @@ namespace CactusPie.MapLocation.Services.Bots
         
         BotType GetBotType(Player bot);
 
-        bool IsCoopGame { get; }
-
         void InitializeBotDataForCurrentGame();
 
         void UnloadBotDataForCurrentGame();

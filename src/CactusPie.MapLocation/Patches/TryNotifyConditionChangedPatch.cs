@@ -24,7 +24,7 @@ namespace CactusPie.MapLocation.Patches
             {
                 MethodInfo method = type.GetMethod("TryNotifyConditionChanged", BindingFlags.NonPublic | BindingFlags.Instance);
 
-                if (method != null && type.BaseType == typeof(QuestControllerClass))
+                if (method != null && type.BaseType == typeof(AbstractQuestControllerClass))
                 {
                     return method;
                 }
